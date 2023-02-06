@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88997d444887bcb43ba0db4e94669921, type: 3}
+  m_Name: TileSet
+  m_EditorClassIdentifier: 
+  tiles:
+  - name: Yellow
+    image: {fileID: 21300000, guid: 45c83e440f3744a46bd8cb5e0e826d7e, type: 3}
+    tileNumber: 1
+    tileColor: 0
+  - name: Red
+    image: {fileID: 21300000, guid: b8e5e8fb6b9e2634c9c41e1b0dab37e5, type: 3}
+    tileNumber: 2
+    tileColor: 0
+  - name: Blue
+    image: {fileID: 21300000, guid: ceb8f2ca92496464e867157ec8ac8b35, type: 3}
+    tileNumber: 3
+    tileColor: 0
+  - name: Green
+    image: {fileID: 21300000, guid: 033d6a4418745ce48ae338d17c3699b0, type: 3}
+    tileNumber: 4
+    tileColor: 0
+  - name: Purple
+    image: {fileID: 21300000, guid: 9502f383d7523b347961ec379a582220, type: 3}
+    tileNumber: 5
+    tileColor: 0
