@@ -43,19 +43,21 @@ public class PlayAreaController : MonoBehaviour
 
     public void RNGTileSetforNulls(int need)
     {
+        //indexi 5
+
         var random = new System.Random();
         int index;
         var tileNames = new List<string>();
-        for (int i = 0; i < need; i++)
-        {
+        
             index = random.Next(tileSet.tiles.Count);
-            tileNames.Add(tileSet.tiles[index].name);
-        }
 
-        InitTilesforNulls(tileNames);
+            tileNames.Add(tileSet.tiles[index].name);
+        
+
+        InitTilesforNulls(tileNames,need);
     }
 
-    public void InitTilesforNulls(List<string> tileString)
+    public void InitTilesforNulls(List<string> tileString,int index)
     {
          
         for (int i = 0; i < tileString.Count; i++)
@@ -66,16 +68,7 @@ public class PlayAreaController : MonoBehaviour
 
                 if (item.name == tileString[i])
                 {
-                    for (int j = 0; j < playAreaTiles.Length; j++)
-                    {
-                        if (playAreaTiles[j].tile == null)
-                        {
-                            playAreaTiles[j].PlaceTile(item);
-                        }
-                    }
-                   
-
-                    
+                    playAreaTiles[index].PlaceTile(item);
                 }
 
 

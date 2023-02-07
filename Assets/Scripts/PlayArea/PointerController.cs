@@ -98,7 +98,17 @@ public class PointerController : MonoBehaviour
                             explosionTiles.Add(tiles[index].tile);
 
                             int remainder = index % 9;
-                            int result = index / 9;
+                        int result;
+
+                        if (index>=9)
+                        {
+                             result = index / 9;
+                        }
+                        else
+                        {
+                             result = 0;
+                        }
+                            
 
                             var indexList=new List<int>();
                             indexList.Add(index);
@@ -164,6 +174,7 @@ public class PointerController : MonoBehaviour
                             }
 
                             index = indexList[j];
+                           result= Result(index);
                             //up check
                             for (int i = 1; i < result + 1; i++)
                             {
@@ -194,7 +205,8 @@ public class PointerController : MonoBehaviour
                             }
 
                             index = indexList[j];
-                            for (int i = 1; i < 10 - (result + 1) + 1; i++)
+                            result = Result(index);
+                            for (int i = 1; i < 10 - (result + 1); i++)
                             {
                                 //down check
                                 if (tiles[index + (9 * 1)].tile.name == tiles[index].tile.name)
@@ -225,76 +237,6 @@ public class PointerController : MonoBehaviour
 
                         }
 
-                        #region checkes
-                        ////right check
-                        //for (int i = 1; i < (9-(remainder+1)); i++)
-                        //    {
-                        //        //right check
-                        //        if (tiles[index + i].tile.name == tiles[index].tile.name)
-                        //        {
-
-
-                        //            indexList.Add(index + i);
-
-                        //        }
-                        //        else
-                        //        {
-                        //        break;
-                        //        }
-                        //    }
-
-
-                        ////left check
-                        //for (int i = 1; i < remainder + 1; i++)
-                        //{
-                        //    //left check
-                        //    if (tiles[index - i].tile.name == tiles[index].tile.name)
-                        //    {
-
-
-                        //        indexList.Add(index - i);
-                        //    }
-                        //    else
-                        //    {
-                        //        break;
-                        //    }
-                        //}
-
-
-                        ////up check
-                        //for (int i = 1; i < result+1; i++)
-                        //{
-                        //    //up check
-                        //    if (tiles[index - (9*i)].tile.name == tiles[index].tile.name)
-                        //    {
-
-
-                        //        indexList.Add(index - (9 * i));
-                        //    }
-                        //    else
-                        //    {
-                        //        break;
-                        //    }
-                        //}
-
-                        ////down check
-                        //for (int i = 1; i < 10-(result+1) + 1; i++)
-                        //{
-                        //    //down check
-                        //    if (tiles[index + (9 * i)].tile.name == tiles[index].tile.name)
-                        //    {
-
-
-                        //        indexList.Add(index + (9 * i));
-                        //    }
-                        //    else
-                        //    {
-                        //        break;
-                        //    }
-                        //}
-                        #endregion
-
-
                         for (int i = 0; i < indexList.Count; i++)
                         {
                             int abc=indexList[i];
@@ -303,22 +245,38 @@ public class PointerController : MonoBehaviour
 
                         //for (int i = 0; i < indexList.Count; i++)
                         //{
-                        //    if (tiles[indexList[i]-9].tile!=null)
+                        //    for (int j = 0; j < tiles.Length; j++)
                         //    {
-                        //        tiles[indexList[i]].PlaceTile(tiles[indexList[i]-9].tile);
+                        //        if (j<=8)
+                        //        {
+                        //            if ((tiles[j].tile == null))
+                        //            {
+                        //                PlayAreaController.instance.RNGTileSetforNulls(j);
+                        //            }
+                        //            else
+                        //            {
+                        //                continue;
+                        //            }
+                                    
+                        //        }
 
-                        //        tiles[indexList[i]-9].ClearTile();
+                        //        else
+                        //        {
+                        //            if (tiles[j].tile==null)
+                        //            {
+                        //                tiles[j].tile = tiles[j - 9].tile;
+                        //                tiles[j - 9].ClearTile();
+                        //            }
+                        //            else
+                        //            {
+                        //                continue;
+                        //            }
+                        //        }
                         //    }
-                            
                         //}
-                        PlayAreaController.instance.RNGTileSetforNulls(indexList.Count);
-
-                        
-                        
-                           // mouseTileObject.GetComponent<SpriteRenderer>().sprite = currentTile.image;
 
 
-                       
+                       // PlayAreaController.instance.RNGTileSetforNulls(indexList.Count);
                     }
                 }
             }
@@ -355,7 +313,15 @@ public class PointerController : MonoBehaviour
 
     public int Result(int index)
     {
-        return index / 9;
+        if (index>=9)
+        {
+            return index / 9;
+        }
+        else
+        {
+            return 0;
+        }
+        
     }
 
 }
