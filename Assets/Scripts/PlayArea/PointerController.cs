@@ -237,72 +237,74 @@ public class PointerController : MonoBehaviour
 
                         }
 
-                        for (int i = 0; i < indexList.Count; i++)
+                        if (indexList.Count!=1)
                         {
-                            int abc=indexList[i];
-                            tiles[indexList[i]].ClearTile();
+                            for (int i = 0; i < indexList.Count; i++)
+                            {
+                                int abc = indexList[i];
+
+                                tiles[indexList[i]].ClearTile();
+
+
+
+
+                            }
+
+                            for (int i = 0; i < 9; i++)
+                            {
+                                if (i == 2)
+                                {
+                                    Debug.Log("abc");
+                                }
+                                for (int j = 0; j < tiles.Length; j++)
+                                {
+                                    if (j <= 8)
+                                    {
+                                        if ((tiles[j].tile == null))
+                                        {
+                                            PlayAreaController.instance.RNGTileSetforNulls(j);
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
+
+                                    }
+
+                                    else
+                                    {
+                                        if (tiles[j].tile == null)
+                                        {
+                                            tiles[j].tile = tiles[j - 9].tile;
+                                            tiles[j - 9].ClearTile();
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
+                            Debug.Log(tiles);
+
+
+                            for (int i = 0; i < tiles.Length; i++)
+                            {
+                                PlayAreaController.instance.playAreaTiles[i].PlaceTile(tiles[i].tile);
+                            }
+                        }
+                        else
+                        {
+                            continue;
                         }
 
-                        //for (int i = 0; i < indexList.Count; i++)
-                        //{
-                        //    for (int j = 0; j < tiles.Length; j++)
-                        //    {
-                        //        if (j<=8)
-                        //        {
-                        //            if ((tiles[j].tile == null))
-                        //            {
-                        //                PlayAreaController.instance.RNGTileSetforNulls(j);
-                        //            }
-                        //            else
-                        //            {
-                        //                continue;
-                        //            }
-                                    
-                        //        }
-
-                        //        else
-                        //        {
-                        //            if (tiles[j].tile==null)
-                        //            {
-                        //                tiles[j].tile = tiles[j - 9].tile;
-                        //                tiles[j - 9].ClearTile();
-                        //            }
-                        //            else
-                        //            {
-                        //                continue;
-                        //            }
-                        //        }
-                        //    }
-                        //}
-
-
-                       // PlayAreaController.instance.RNGTileSetforNulls(indexList.Count);
+                        
+                            
                     }
                 }
             }
         }
 
-
-    }
-
-    public void RightCheck(int remainder,int index,TileController[]tiles,List<int> indexList)
-    {
-        //right check
-        for (int i = 1; i < (9 - (remainder + 1)); i++)
-        {
-            //right check
-            if (tiles[index + i].tile.name == tiles[index].tile.name)
-            {
-
-
-                indexList.Add(index + i);
-
-            }
-            else
-            {
-                break;
-            }
-        }
 
     }
 
