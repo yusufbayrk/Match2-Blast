@@ -23,11 +23,11 @@ public class PlayAreaController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RNGTÝleSet();
+        RNGTileSet();
     }
 
 
-    public void RNGTÝleSet()
+    public void RNGTileSet()
     {
         var random = new System.Random();
         int index;
