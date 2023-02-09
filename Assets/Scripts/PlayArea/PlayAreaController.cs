@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using TMPro;
+
 
 
 
@@ -13,6 +15,7 @@ public class PlayAreaController : MonoBehaviour
     public TileController[] playAreaTiles;
     public TileSet_Scriptable tileSet;
     public int index = 0;
+    public TextMeshProUGUI movement;
 
     void Awake()
     {
@@ -24,6 +27,20 @@ public class PlayAreaController : MonoBehaviour
     void Start()
     {
         RNGTileSet();
+        RNGMovementNumber();
+
+    }
+
+    public void  RNGMovementNumber()
+    {
+        var random = new System.Random();
+        int index;
+
+        var lowerbound = 23;
+        var upperbound = 30;
+        index = random.Next(lowerbound,upperbound);
+        movement.text = index.ToString();
+
     }
 
 

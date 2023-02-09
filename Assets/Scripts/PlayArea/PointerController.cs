@@ -292,6 +292,11 @@ public class PointerController : MonoBehaviour
                             {
                                 PlayAreaController.instance.playAreaTiles[i].PlaceTile(tiles[i].tile);
                             }
+                            string movement = PlayAreaController.instance.movement.text;
+                            int move = Int32.Parse(movement);
+                            move--;
+
+                            PlayAreaController.instance.movement.text = move.ToString();
                         }
                         else
                         {
@@ -299,6 +304,7 @@ public class PointerController : MonoBehaviour
                         }
 
                         
+                       
                             
                     }
                 }
