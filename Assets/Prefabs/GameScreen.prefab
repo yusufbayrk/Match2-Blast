@@ -528,6 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128bed1a21d05364e9e04c52ee6a8aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinNumPrefab: {fileID: 8771953722010611962, guid: 18072f43a31a647088f25f67e5fdb124, type: 3}
   mouseTileObject: {fileID: 8092414193919667646}
   beforeTiles: []
   currentplayareaTiles: []

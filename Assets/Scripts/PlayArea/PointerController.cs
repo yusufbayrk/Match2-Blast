@@ -14,6 +14,7 @@ using UnityEngine.UI;
 public class PointerController : MonoBehaviour
 {
 
+    [SerializeField] GameObject coinNumPrefab;
     public static PointerController instance;
     public GameObject mouseTileObject;
     private TileController lastTileController;
@@ -255,9 +256,11 @@ public class PointerController : MonoBehaviour
                             if (tiles[indexList[1]].tile.image== GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite)
                             {
                             tileAnimManager.AddCoins(tiles[currentindex].transform.position, indexList.Count);
+                                coinNumPrefab.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite;
+                                Destroy(Instantiate(coinNumPrefab, tiles[currentindex].transform.position, Quaternion.identity), 1f);
                             }
 
-                            //Destroy(other.gameObject);
+                           
 
                             for (int i = 0; i < indexList.Count; i++)
                             {
