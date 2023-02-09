@@ -13,7 +13,7 @@ public class TileAnimManager : MonoBehaviour
     //References
     [Header("UI references")]
     [SerializeField] TMP_Text coinUIText;
-    [SerializeField] GameObject animatedCoinPrefab;
+    [SerializeField] public GameObject animatedCoinPrefab;
     [SerializeField] RectTransform target;
 
     [Space]
@@ -48,14 +48,15 @@ public class TileAnimManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-        PrepareCoins();
         SetImage();
-        
+        PrepareCoins();
+        instance = this;
     }
+   
 
     void PrepareCoins()
     {
+        SetImage();
         GameObject coin;
         for (int i = 0; i < maxCoins; i++)
         {
@@ -68,7 +69,7 @@ public class TileAnimManager : MonoBehaviour
 
     void Animate(Vector3 collectedCoinPosition, int amount)
     {
-        SetImage();
+        
         for (int i = 0; i < amount; i++)
         {
             //check if there's coins in the pool

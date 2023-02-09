@@ -251,7 +251,7 @@ public class PointerController : MonoBehaviour
 
                         if (indexList.Count!=1)
                         {
-                            TileAnimManager.instance.SetImage();
+                            
                             if (tiles[indexList[1]].tile.image== GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite)
                             {
                             tileAnimManager.AddCoins(tiles[currentindex].transform.position, indexList.Count);
@@ -264,11 +264,10 @@ public class PointerController : MonoBehaviour
                                 int abc = indexList[i];
 
                                 tiles[indexList[i]].ClearTile();
-
-
-
-
                             }
+
+                           
+
 
                             for (int i = 0; i < 9; i++)
                             {
@@ -282,6 +281,7 @@ public class PointerController : MonoBehaviour
                                     {
                                         if ((tiles[j].tile == null))
                                         {
+                                            
                                             PlayAreaController.instance.RNGTileSetforNulls(j);
                                         }
                                         else
