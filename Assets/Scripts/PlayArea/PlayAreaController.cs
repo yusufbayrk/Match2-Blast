@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
-
+[DefaultExecutionOrder(101)]
 
 
 public class PlayAreaController : MonoBehaviour
@@ -16,11 +17,13 @@ public class PlayAreaController : MonoBehaviour
     public TileSet_Scriptable tileSet;
     public int index = 0;
     public TextMeshProUGUI movement;
+    public TextMeshProUGUI goal;
 
     void Awake()
     {
         instance = this;
         playAreaTiles=transform.Find("OpeningAreaTiles").GetComponentsInChildren<TileController>();
+        RNGimageGoal();
     }
 
     // Start is called before the first frame update
@@ -28,6 +31,21 @@ public class PlayAreaController : MonoBehaviour
     {
         RNGTileSet();
         RNGMovementNumber();
+        RNGGoalNumber();
+        
+
+    }
+
+    void RNGimageGoal()
+    {
+        var random = new System.Random();
+        int index;
+        var lowerbound = 0;
+        var upperbound = 5;
+        index = random.Next(lowerbound, upperbound);
+       
+
+        GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite = tileSet.tiles[index].image;
 
     }
 
@@ -40,6 +58,18 @@ public class PlayAreaController : MonoBehaviour
         var upperbound = 30;
         index = random.Next(lowerbound,upperbound);
         movement.text = index.ToString();
+
+    }
+
+    public void RNGGoalNumber()
+    {
+        var random = new System.Random();
+        int index;
+
+        var lowerbound = 23;
+        var upperbound = 38;
+        index = random.Next(lowerbound, upperbound);
+        goal.text = index.ToString();
 
     }
 

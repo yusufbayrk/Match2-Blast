@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -19,6 +20,7 @@ public class PointerController : MonoBehaviour
     public List<Tile> beforeTiles = new List<Tile>();
     public TileController[] currentplayareaTiles;
     public Tile currentTile = null;
+    TileAnimManager tileAnimManager;
 
     private void Awake()
     {
@@ -27,6 +29,8 @@ public class PointerController : MonoBehaviour
     void Start()
     {
         currentTile = null;
+        tileAnimManager = FindObjectOfType<TileAnimManager>();
+
     }
     public void Update()
     {
@@ -147,30 +151,38 @@ public class PointerController : MonoBehaviour
                             index = indexList[j];
                             for (int i = 1; i < remainder + 1; i++)
                             {
-                                //left check
-                                if (tiles[index - 1].tile.name == tiles[index].tile.name)
+                                if (index!=0)
                                 {
-                                    bool check = true;
-                                    foreach (var item in indexList)
+                                    //left check
+                                    if (tiles[index - 1].tile.name == tiles[index].tile.name)
                                     {
-                                        if (item == index - 1)
+                                        bool check = true;
+                                        foreach (var item in indexList)
                                         {
-                                            check = false;
+                                            if (item == index - 1)
+                                            {
+                                                check = false;
+                                            }
                                         }
-                                    }
-                                    if (check)
-                                    {
-                                        indexList.Add(index - 1);
-                                        index = index - 1;
-                                        remainder = Remainder(index);
-                                    }
+                                        if (check)
+                                        {
+                                            indexList.Add(index - 1);
+                                            index = index - 1;
+                                            remainder = Remainder(index);
+                                        }
 
-                                    
+
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 else
                                 {
                                     break;
                                 }
+                                
                             }
 
                             index = indexList[j];
@@ -239,6 +251,14 @@ public class PointerController : MonoBehaviour
 
                         if (indexList.Count!=1)
                         {
+                            TileAnimManager.instance.SetImage();
+                            if (tiles[indexList[1]].tile.image== GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite)
+                            {
+                            tileAnimManager.AddCoins(tiles[currentindex].transform.position, indexList.Count);
+                            }
+
+                            //Destroy(other.gameObject);
+
                             for (int i = 0; i < indexList.Count; i++)
                             {
                                 int abc = indexList[i];

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
+
+[DefaultExecutionOrder(105)]
 
 public class TileAnimManager : MonoBehaviour
 {
@@ -11,7 +14,7 @@ public class TileAnimManager : MonoBehaviour
     [Header("UI references")]
     [SerializeField] TMP_Text coinUIText;
     [SerializeField] GameObject animatedCoinPrefab;
-    [SerializeField] Transform target;
+    [SerializeField] RectTransform target;
 
     [Space]
     [Header("Available tiles : (tiles to pool)")]
@@ -26,6 +29,7 @@ public class TileAnimManager : MonoBehaviour
 
     [SerializeField] Ease easeType;
     [SerializeField] float spread;
+    public static TileAnimManager instance;
 
     Vector3 targetPosition;
 
@@ -44,10 +48,10 @@ public class TileAnimManager : MonoBehaviour
 
     void Awake()
     {
-        targetPosition = target.position;
-
-        //prepare pool
+        instance = this;
         PrepareCoins();
+        SetImage();
+        
     }
 
     void PrepareCoins()
@@ -64,6 +68,7 @@ public class TileAnimManager : MonoBehaviour
 
     void Animate(Vector3 collectedCoinPosition, int amount)
     {
+        SetImage();
         for (int i = 0; i < amount; i++)
         {
             //check if there's coins in the pool
@@ -74,10 +79,10 @@ public class TileAnimManager : MonoBehaviour
                 coin.SetActive(true);
 
                 //move coin to the collected coin pos
-                coin.transform.position = collectedCoinPosition + new Vector3(Random.Range(-spread, spread), 0f, 0f);
+                coin.transform.position = collectedCoinPosition + new Vector3(UnityEngine.Random.Range(-spread, spread), 0f, 0f);
 
                 //animate coin to target position
-                float duration = Random.Range(minAnimDuration, maxAnimDuration);
+                float duration = UnityEngine.Random.Range(minAnimDuration, maxAnimDuration);
                 coin.transform.DOMove(targetPosition, duration)
                 .SetEase(easeType)
                 .OnComplete(() => {
@@ -85,7 +90,13 @@ public class TileAnimManager : MonoBehaviour
                     coin.SetActive(false);
                     coinsQueue.Enqueue(coin);
 
-                    Coins++;
+                    string strgoal = PlayAreaController.instance.goal.text;
+                    int goal = Int32.Parse(strgoal);
+                    goal--;
+
+                    PlayAreaController.instance.goal.text = goal.ToString();
+
+                    
                 });
             }
         }
@@ -93,7 +104,14 @@ public class TileAnimManager : MonoBehaviour
 
     public void AddCoins(Vector3 collectedCoinPosition, int amount)
     {
+        
+        targetPosition = target.position;
         Animate(collectedCoinPosition, amount);
+    }
+
+    public void SetImage()
+    {
+        animatedCoinPrefab.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite;
     }
 
 }

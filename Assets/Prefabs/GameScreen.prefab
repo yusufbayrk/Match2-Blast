@@ -337,6 +337,7 @@ RectTransform:
   - {fileID: 1142541300155803954}
   - {fileID: 1142541299610108818}
   - {fileID: 7088061247134215749}
+  - {fileID: 224293701240145994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,7 +420,7 @@ GameObject:
   - component: {fileID: 6949340543670435323}
   m_Layer: 5
   m_Name: TileCollectImage
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,7 +442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 163, y: -0.0015661}
+  m_AnchoredPosition: {x: 163, y: 0}
   m_SizeDelta: {x: 154.383, y: 154.383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4335450574658730008
@@ -536,6 +537,58 @@ MonoBehaviour:
     tileNumber: 0
     tileColor: 0
     isExplode: 0
+--- !u!1 &5992600015614370275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224293701240145994}
+  - component: {fileID: 5700529675636705136}
+  m_Layer: 0
+  m_Name: AnimManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &224293701240145994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992600015614370275}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 51.60302, y: 70.78741, z: 28.874691}
+  m_LocalScale: {x: 3.2542374, y: 3.2542374, z: 3.2542374}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1142541300739513517}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5700529675636705136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992600015614370275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e90197dd6d68492997eae127ae611c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinUIText: {fileID: 5943628307761242068}
+  animatedCoinPrefab: {fileID: 8771953722010611962, guid: 18072f43a31a647088f25f67e5fdb124, type: 3}
+  target: {fileID: 447729832337700548}
+  maxCoins: 50
+  minAnimDuration: 0.7
+  maxAnimDuration: 1.8
+  easeType: 28
+  spread: 0.2
 --- !u!1 &6034255326067429547
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,6 +3115,7 @@ MonoBehaviour:
   tileSet: {fileID: 11400000, guid: 09ab662488b43784282475360542130f, type: 2}
   index: 0
   movement: {fileID: 602440323611813359}
+  goal: {fileID: 5943628307761242068}
 --- !u!224 &7768732571554979293 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7917986226479328851, guid: 68ea18758e727ec48af82f974600151a, type: 3}
