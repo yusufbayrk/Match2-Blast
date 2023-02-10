@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(101)]
 
@@ -35,6 +36,17 @@ public class PlayAreaController : MonoBehaviour
         
 
     }
+    private void Update()
+    {
+        if (Int32.Parse(movement.text) == 0)
+        {
+            SceneManager.LoadScene("LevelScene");
+        }
+        else if (Int32.Parse(goal.text) == 0)
+        {
+            SceneManager.LoadScene("LevelScene");
+        }
+    }
 
     void RNGimageGoal()
     {
@@ -54,8 +66,8 @@ public class PlayAreaController : MonoBehaviour
         var random = new System.Random();
         int index;
 
-        var lowerbound = 23;
-        var upperbound = 30;
+        var lowerbound = 15;
+        var upperbound = 25;
         index = random.Next(lowerbound,upperbound);
         movement.text = index.ToString();
 
@@ -66,8 +78,8 @@ public class PlayAreaController : MonoBehaviour
         var random = new System.Random();
         int index;
 
-        var lowerbound = 23;
-        var upperbound = 38;
+        var lowerbound = 10;
+        var upperbound = 20;
         index = random.Next(lowerbound, upperbound);
         goal.text = index.ToString();
 
