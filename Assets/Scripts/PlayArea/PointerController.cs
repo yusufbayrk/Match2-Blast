@@ -13,7 +13,8 @@ using UnityEngine.UI;
 
 public class PointerController : MonoBehaviour
 {
-
+    public AudioClip tileCollect;
+    public AudioClip tileExplode;
     [SerializeField] GameObject coinNumPrefab;
     public static PointerController instance;
     public GameObject mouseTileObject;
@@ -31,6 +32,7 @@ public class PointerController : MonoBehaviour
     {
         currentTile = null;
         tileAnimManager = FindObjectOfType<TileAnimManager>();
+       
 
     }
     public void Update()
@@ -252,15 +254,19 @@ public class PointerController : MonoBehaviour
 
                         if (indexList.Count!=1)
                         {
-                            
+                            AudioSource audio = GetComponent<AudioSource>();
+
                             if (tiles[indexList[1]].tile.image== GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite)
                             {
                             tileAnimManager.AddCoins(tiles[currentindex].transform.position, indexList.Count);
                                 coinNumPrefab.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Goal").GetComponent<Image>().sprite;
                                 Destroy(Instantiate(coinNumPrefab, tiles[currentindex].transform.position, Quaternion.identity), 1f);
+                                audio.PlayOneShot(tileExplode);
                             }
-
-                           
+                            else
+                            {
+                                audio.PlayOneShot(tileCollect);
+                            }
 
                             for (int i = 0; i < indexList.Count; i++)
                             {
